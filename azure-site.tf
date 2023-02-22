@@ -10,7 +10,10 @@ resource "volterra_azure_vnet_site" "azure-site" {
 
   #assisted                = false
   logs_streaming_disabled = true
-  no_worker_nodes         = true
+  //One of the values on lines 14-15-16 must be set
+  no_worker_nodes         = true 
+  #nodes_per_az = "1"
+  #total_nodes = 6
 
   azure_cred {
     name      = var.volterraCloudCredAzure
