@@ -5,12 +5,13 @@ resource "volterra_azure_vnet_site" "azure-site" {
   namespace      = "system"
   azure_region   = var.azureRegion
   resource_group = "${var.resourceGroup}-appstack-site"
+  // Minimum resource requirements can be found https://docs.cloud.f5.com/docs/how-to/site-management/create-azure-site
   machine_type   = "Standard_D8s_v3" # Modify machine type to match resource requirements (minimum 4x VCPU, 14GB RAM)
   ssh_key        = var.ssh_public_key
 
   #assisted                = false
   logs_streaming_disabled = true
-  //One of the values on lines 14-15-16 must be set
+  //One of the values on lines 15-16-17 must be set
   no_worker_nodes         = true 
   #nodes_per_az = "1"
   #total_nodes = 6
