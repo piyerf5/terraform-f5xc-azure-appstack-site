@@ -85,8 +85,7 @@ resource "volterra_cloud_site_labels" "labels" {
   site_type = "azure_vnet_site" 
   labels = {
     site-group = var.projectPrefix
-    key1       = "value1"
-    key2       = "value2"
+    appstack-site-group = var.projectPrefix
   }
   ignore_on_delete = true
 }
