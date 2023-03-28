@@ -13,7 +13,7 @@ resource "volterra_azure_vnet_site" "azure-site" {
   logs_streaming_disabled = true
   //One of the values on lines 15-16-17 must be set
   no_worker_nodes         = true 
-  #nodes_per_az = "1"
+  #nodes_per_az = "1" 
   #total_nodes = 6
 
   azure_cred {
@@ -61,10 +61,13 @@ resource "volterra_azure_vnet_site" "azure-site" {
     no_network_policy        = true
     no_forward_proxy         = true
     no_outside_static_routes = true
-    no_k8s_cluster           = true
+   #no_k8s_cluster           = true
     no_global_network        = true
     #default_storage         = ""
-    
+    k8s_cluster {
+      namespace = var.k8s_cluster_namespace // Value obtained from mk8s cluster creation module
+      name      = var.k8s_cluster_name      // Value obtained from mk8s cluster creation module
+    }
   }
 
   vnet {
