@@ -1,22 +1,22 @@
-variable "projectPrefix" {
+variable "project_prefix" {
     type = string
 }
-variable "azureRegion" {
+variable "azure_region" {
     type = string
 }
-variable "resourceGroup" {
+variable "resource_group" {
     type = string
 }
-variable "hubVnetName" {
+variable "hub_vnet_name" {
     type = string
 }
-variable "volterraCloudCredAzure" {
+variable "volterra_cloud_cred_azure" {
     type = string
 }
 variable "ssh_public_key" {
     type = string
 }
-variable instanceSuffix {
+variable instance_suffix {
     type = string
 }
 variable k8s_cluster_name { 
