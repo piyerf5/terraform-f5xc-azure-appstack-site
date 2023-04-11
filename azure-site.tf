@@ -1,10 +1,10 @@
 ############################ Volterra Azure Appstack Site ############################
 
 resource "volterra_azure_vnet_site" "azure-site" {
-  name           = format("%s-azureappstack-%s", var.projectPrefix, var.instanceSuffix)
+  name           = format("%s-azureappstack-%s", var.project_prefix, var.instance_suffix)
   namespace      = "system"
-  azure_region   = var.azureRegion
-  resource_group = "${var.resourceGroup}-appstack-site"
+  azure_region   = var.azure_region
+  resource_group = "${var.resource_group}-appstack-site"
   // Minimum resource requirements can be found https://docs.cloud.f5.com/docs/how-to/site-management/create-azure-site
   machine_type   = "Standard_D8s_v3" # Modify machine type to match resource requirements (minimum 4x VCPU, 14GB RAM)
   ssh_key        = var.ssh_public_key
@@ -17,7 +17,7 @@ resource "volterra_azure_vnet_site" "azure-site" {
   #total_nodes = 6
 
   azure_cred {
-    name      = var.volterraCloudCredAzure
+    name      = var.volterra_cloud_cred_azure
     namespace = "system" //Cloud Credentials are created in the System Namespace only
   }
 
@@ -72,8 +72,8 @@ resource "volterra_azure_vnet_site" "azure-site" {
 
   vnet {
     existing_vnet {
-      resource_group = var.resourceGroup
-      vnet_name      = var.hubVnetName
+      resource_group = var.resource_group
+      vnet_name      = var.hub_vnet_name
     }
   }
 
@@ -87,8 +87,8 @@ resource "volterra_cloud_site_labels" "labels" {
   name      = volterra_azure_vnet_site.azure-site.name
   site_type = "azure_vnet_site" 
   labels = {
-    site-group = var.projectPrefix
-    appstack-site-group = var.projectPrefix
+    site-group = var.project_prefix
+    appstack-site-group = var.project_prefix
   }
   ignore_on_delete = true
 }
