@@ -61,9 +61,16 @@ resource "volterra_azure_vnet_site" "azure-site" {
     no_network_policy        = true
     no_forward_proxy         = true
     no_outside_static_routes = true
-   #no_k8s_cluster           = true
     no_global_network        = true
-    #default_storage         = ""
+   #  default_storage         = "true"
+
+   storage_class_name = test-mk8s
+   # default_storage_class = true
+    openebs_enterprise {
+      replication= 1
+      storage_class_size = 20
+    }
+
     k8s_cluster {
       namespace = var.k8s_cluster_namespace // Value obtained from mk8s cluster creation module
       name      = var.k8s_cluster_name      // Value obtained from mk8s cluster creation module
